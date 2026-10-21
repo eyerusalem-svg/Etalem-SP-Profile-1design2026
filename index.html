@@ -176,6 +176,10 @@
     .stars-fill { position: absolute; top: 0; left: 0; height: 100%; overflow: hidden; }
     .stars-fill svg { fill: #E21E81; }
 
+    /* ── Skills Rating section only: golden stars ── */
+    #skill-rating-card .stars-bg svg { fill: #e8e4da; }
+    #skill-rating-card .stars-fill svg { fill: #F5B301; }
+
     .brand-word { color: #E21E81; }
 
     /* ── Highlights ── */
@@ -793,7 +797,7 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     } catch (e) { return isoString; }
   }
 
-  /* ───────── stars: grey base + pink (#E21E81) fill clipped to the exact value ───────── */
+  /* ───────── stars: grey base + colour fill clipped to the exact value ───────── */
   var STAR_PATH = 'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z';
   function oneStar() { return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="' + STAR_PATH + '"/></svg>'; }
   function starsHtml(value, size) {
@@ -842,7 +846,7 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     document.getElementById('generated-badge').style.display = 'none';
   }
 
-  /* ───────── ratings (original list layout, pink stars) ───────── */
+  /* ───────── ratings (original list layout, golden stars) ───────── */
   var ratingDefinitions = [
     { label: 'Punctuality & Time Management',                  key: 'd-rating-punctuality' },
     { label: 'Professionalism & Politeness',                   key: 'd-rating-professionalism' },
