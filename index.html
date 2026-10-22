@@ -298,7 +298,7 @@
       background: rgba(226,30,129,0.1); color: #E21E81;
       display: inline-flex; align-items: center; justify-content: center;
     }
-    .skill-group-svg i { font-size: 0.9rem; line-height: 1; }
+    .skill-group-svg svg { width: 17px; height: 17px; display: block; }
     .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-chip {
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -490,8 +490,8 @@
       .hl-value { font-size: 1.45rem; }
       .cta-card { padding: 2rem 1.2rem; }
       .cta-title { font-size: 1.1rem; }
-      .cta-buttons { flex-direction: column; align-items: stretch; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
-      .cta-btn { width: 100%; min-width: 0; padding: 0.85rem 1.2rem; font-size: 0.95rem; }
+      .cta-buttons { flex-direction: column; align-items: stretch; width: 82%; max-width: 270px; margin: 0 auto; gap: 0.7rem; }
+      .cta-btn { width: 100%; min-width: 0; padding: 0.75rem 1rem; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -1018,9 +1018,9 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     return out;
   }
   var SKILL_ICONS = {
-    cooking:  '<i class="fas fa-kitchen-set"></i>',
-    cleaning: '<i class="fas fa-broom"></i>',
-    nanny:    '<i class="fas fa-baby"></i>'
+    cooking:  '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"/><path d="M6 17h12"/></svg>',
+    cleaning: '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h.01"/><path d="M7 5h.01"/><path d="M11 7h.01"/><path d="M3 7h.01"/><path d="M7 9h.01"/><path d="M3 11h.01"/><rect width="4" height="4" x="15" y="5"/><path d="m19 9 2 2v10c0 .6-.4 1-1 1h-6c-.6 0-1-.4-1-1V11l2-2"/><path d="m13 14 8-2"/><path d="m13 19 8-2"/></svg>',
+    nanny:    '<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h.01"/><path d="M15 12h.01"/><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/></svg>'
   };
   var skillsGroups = document.getElementById('skills-groups');
   var totalSkills = 0;
