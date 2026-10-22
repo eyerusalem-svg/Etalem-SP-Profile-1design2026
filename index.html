@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Service Provider Profile | Verified by GoodayOn</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -293,6 +293,12 @@
       font-weight: 700; color: #6b6f7c; margin-bottom: 0.65rem;
     }
     .skill-group-title i { color: #E21E81; font-size: 0.8rem; }
+    .skill-group-svg {
+      width: 30px; height: 30px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(226,30,129,0.1); color: #E21E81;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .skill-group-svg i { font-size: 0.9rem; line-height: 1; }
     .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-chip {
       display: inline-flex; align-items: center; gap: 0.45rem;
@@ -386,6 +392,7 @@
     .cert-badge.cleaning-cert { background: #e6f4ea; color: #2e6b3e; border-left: 3px solid #2ecc71; }
     .cert-badge.nanny-cert { background: #e8f0fe; color: #1f6392; border-left: 3px solid #3498db; }
     .cert-badge.show { display: inline-flex; }
+    .cert-emoji { font-size: 1.1rem; line-height: 1; }
 
     /* ── Customer CTA card ── */
     .cta-card {
@@ -412,6 +419,8 @@
     .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
     .cta-btn {
       border: none; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      min-width: 230px; text-align: center;
       padding: 0.9rem 2.2rem; border-radius: 100px;
       font-size: 1rem; font-weight: 700; font-family: inherit;
       color: #fff; transition: opacity 0.2s, transform 0.2s;
@@ -481,7 +490,8 @@
       .hl-value { font-size: 1.45rem; }
       .cta-card { padding: 2rem 1.2rem; }
       .cta-title { font-size: 1.1rem; }
-      .cta-btn { padding: 0.8rem 1.6rem; font-size: 0.95rem; }
+      .cta-buttons { flex-direction: column; align-items: stretch; max-width: 320px; margin: 0 auto; gap: 0.75rem; }
+      .cta-btn { width: 100%; min-width: 0; padding: 0.85rem 1.2rem; font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -579,7 +589,7 @@
   <!-- ── Skills ── -->
   <div class="card" id="skills-card">
     <div class="section-head">
-      <div class="section-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+      <div class="section-icon"><i class="fas fa-list-check"></i></div>
       <div>
         <div class="section-heading">Skills</div>
         <div class="section-sub">What this service provider can do for you</div>
@@ -624,16 +634,16 @@
   <!-- ── Certifications ── -->
   <div class="card" id="certs-card">
     <div class="section-head">
-      <div class="section-icon"><i class="fas fa-certificate"></i></div>
+      <div class="section-icon">🏅</div>
       <div>
         <div class="section-heading">Certifications</div>
         <div class="section-sub">Certificates held by this service provider</div>
       </div>
     </div>
     <div class="cert-badges">
-      <div class="cert-badge cooking-cert" id="cert-cooking"><i class="fas fa-egg"></i> 🍳 Cooking Certified</div>
-      <div class="cert-badge cleaning-cert" id="cert-cleaning"><i class="fas fa-spray-can-sparkles"></i> 🧹 Cleaning Certified</div>
-      <div class="cert-badge nanny-cert" id="cert-nanny"><i class="fas fa-hand-sparkles"></i> 👶 Nanny Certified</div>
+      <div class="cert-badge cooking-cert" id="cert-cooking"><span class="cert-emoji">🍳</span> Cooking Certified</div>
+      <div class="cert-badge cleaning-cert" id="cert-cleaning"><span class="cert-emoji">🧹</span> Cleaning Certified</div>
+      <div class="cert-badge nanny-cert" id="cert-nanny"><span class="cert-emoji">👶</span> Nanny Certified</div>
     </div>
   </div>
 
@@ -1007,14 +1017,19 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     });
     return out;
   }
+  var SKILL_ICONS = {
+    cooking:  '<i class="fas fa-kitchen-set"></i>',
+    cleaning: '<i class="fas fa-broom"></i>',
+    nanny:    '<i class="fas fa-baby"></i>'
+  };
   var skillsGroups = document.getElementById('skills-groups');
   var totalSkills = 0;
-  function addSkillGroup(title, iconCls, raw) {
+  function addSkillGroup(title, emoji, raw) {
     var items = splitItems(raw);
     if (!items.length) return;
     var grp = el('div', 'skill-group');
     var head = el('div', 'skill-group-title');
-    head.appendChild(icon(iconCls));
+    var sg = el('span', 'skill-group-svg'); sg.innerHTML = SKILL_ICONS[emoji] || ''; head.appendChild(sg);
     head.appendChild(el('span', null, title));
     grp.appendChild(head);
     if (items.length === 1 && items[0].length > 70) {
@@ -1032,9 +1047,9 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     }
     skillsGroups.appendChild(grp);
   }
-  if (showCooking === 'true')  addSkillGroup('Cooking', 'fas fa-utensils', !isEmpty(extraCooking) ? extraCooking : cookingSkills);
-  if (showCleaning === 'true') addSkillGroup('Cleaning', 'fas fa-spray-can-sparkles', cleaningSkills);
-  if (showNanny === 'true')    addSkillGroup('Nanny', 'fas fa-hand-sparkles', nannySkills);
+  if (showCooking === 'true')  addSkillGroup('Cooking', 'cooking', !isEmpty(extraCooking) ? extraCooking : cookingSkills);
+  if (showCleaning === 'true') addSkillGroup('Cleaning', 'cleaning', cleaningSkills);
+  if (showNanny === 'true')    addSkillGroup('Nanny', 'nanny', nannySkills);
   if (!skillsGroups.children.length) hideEl('skills-card');
   else if (totalSkills) set('skills-count', totalSkills + (totalSkills === 1 ? ' skill' : ' skills'));
 
