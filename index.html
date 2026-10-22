@@ -248,7 +248,7 @@
     .glance-icon {
       width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
       background: rgba(226,30,129,0.1); color: #E21E81;
-      display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem; line-height: 1;
     }
     .glance-label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; color: #9a9eac; }
     .glance-value { font-size: 0.98rem; font-weight: 700; color: #1e293b; }
@@ -920,10 +920,10 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
   /* ───────── experience: at-a-glance + work history ───────── */
   var glance = document.getElementById('exp-glance');
   var glanceCount = 0;
-  function addGlance(iconCls, label, value) {
+  function addGlance(emoji, label, value) {
     if (isEmpty(value)) return;
     var item = el('div', 'glance-item');
-    var ic = el('div', 'glance-icon'); ic.appendChild(icon(iconCls));
+    var ic = el('div', 'glance-icon', emoji);
     var txt = el('div');
     txt.appendChild(el('div', 'glance-label', label));
     txt.appendChild(el('div', 'glance-value', value));
@@ -931,9 +931,9 @@ Home Cook | Private household | 2019 - 2021 | Daily family meals and holiday coo
     glance.appendChild(item);
     glanceCount++;
   }
-  if (showCooking === 'true')  addGlance('fas fa-fire-burner', 'Cooking experience', cookingExp);
-  if (showCleaning === 'true') addGlance('fas fa-broom', 'Cleaning experience', cleaningExp);
-  if (showNanny === 'true')    addGlance('fas fa-child', 'Nanny experience', nannyExp);
+  if (showCooking === 'true')  addGlance('\uD83C\uDF73', 'Cooking experience', cookingExp);
+  if (showCleaning === 'true') addGlance('\uD83E\uDDF9', 'Cleaning experience', cleaningExp);
+  if (showNanny === 'true')    addGlance('\uD83D\uDC76', 'Nanny experience', nannyExp);
 
   /* History format (one entry per line):  Role | Institution | Period | Details
      Also accepts a JSON array of {role, institution, period, details}. Institution is optional. */
